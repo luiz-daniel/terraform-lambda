@@ -6,7 +6,11 @@ terraform {
   }
 
   backend "s3" {
-    region = "sa-east-1"
-    key    = "terraform.tfstate"
+    region = var.region
+    key    = "terraform/${var.function_name}/terraform.tfstate"
   }
+}
+
+provider "aws" {
+  region = var.region
 }
