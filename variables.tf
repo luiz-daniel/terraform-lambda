@@ -7,6 +7,7 @@ variable "environment" {
 
 variable "filename" {
   type = string
+  default = "./lambda.zip"
 }
 
 variable "timeout" {
