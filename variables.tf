@@ -6,6 +6,7 @@ variable "region" {
 variable "function_name" {
   type = string
 }
+
 variable "environment" {
   type = map(string)
 }
