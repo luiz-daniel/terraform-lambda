@@ -7,7 +7,8 @@ terraform {
 
   backend "s3" {
     region = var.region
-    key    = "terraform/${var.function_name}/terraform.tfstate"
+    bucket = "github-terraform"
+    key    = "${var.function_name}/terraform.tfstate"
   }
 }
 
