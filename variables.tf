@@ -1,3 +1,8 @@
+variable "api" {
+  type = bool
+  default = false
+}
+
 variable "region" {
   type = string
   default = "us-east-1"
