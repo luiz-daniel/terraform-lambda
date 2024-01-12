@@ -1,3 +1,12 @@
+variable "inline_policies" {
+  type        = list(object({
+    name      = string
+    actions   = list(string)
+    resources = list(string)
+  }))
+  default     = []
+}
+
 variable "api" {
   type = bool
   default = false

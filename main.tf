@@ -1,11 +1,11 @@
 resource "aws_iam_role" "lambda-role" {
   name               = "${var.function_name}-lambda-role"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
+}
 
-  inline_policy {
-    name   = "lambda_permissions_policy"
-    policy = data.aws_iam_policy_document.lambda_crud_policy.json
-  }
+resource "aws_iam_role_policy_attachment" "lambda_exec" {
+  role       = aws_iam_role.lambda-role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
 resource "aws_lambda_function" "lambda" {
