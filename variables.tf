@@ -23,6 +23,7 @@ variable "function_name" {
 
 variable "environment" {
   type = map(string)
+  default = {}
 }
 
 variable "filename" {
