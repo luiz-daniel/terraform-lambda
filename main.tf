@@ -1,13 +1,3 @@
-resource "aws_iam_role" "lambda-role" {
-  name               = "${var.function_name}-lambda-role"
-  assume_role_policy = data.aws_iam_policy_document.assume_role.json
-}
-
-resource "aws_iam_role_policy_attachment" "lambda_exec" {
-  role       = aws_iam_role.lambda-role.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-}
-
 resource "aws_lambda_function" "lambda" {
   function_name = var.function_name
   filename      = var.filename
@@ -37,7 +27,7 @@ resource "aws_lambda_permission" "gateway-permission" {
   principal     = "apigateway.amazonaws.com"
 }
 
-resource "aws_lambda_alias" "example" {
+resource "aws_lambda_alias" "alias" {
   name             = "latest"
   function_name    = aws_lambda_function.lambda.function_name
   function_version = aws_lambda_function.lambda.version
