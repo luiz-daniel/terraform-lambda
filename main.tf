@@ -13,6 +13,10 @@ resource "aws_lambda_function" "lambda" {
     variables = var.environment
   }
 
+  tracing_config {
+    mode = "Active"
+  }
+
   tags = var.tags
 
   publish = true
