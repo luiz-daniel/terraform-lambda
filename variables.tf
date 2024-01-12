@@ -32,7 +32,7 @@ variable "filename" {
 
 variable "timeout" {
   type = number
-  default = 1
+  default = 5
 }
 
 variable "memory" {
