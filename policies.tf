@@ -28,5 +28,5 @@ resource "aws_iam_role_policy_attachment" "lambda_exec" {
 
 resource "aws_iam_role_policy_attachment" "xray_access" {
   role       = aws_iam_role.lambda-role.name
-  policy_arn = "arn:aws:iam::aws:policy/AWSXrayWriteOnlyAccess"
+  policy_arn = "arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess"
 }
