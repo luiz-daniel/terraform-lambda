@@ -54,3 +54,7 @@ variable "runtime" {
 variable "architectures" {
   default = ["arm64"]
 }
+
+variable "ephemeral_storage" {
+  default = 512
+}

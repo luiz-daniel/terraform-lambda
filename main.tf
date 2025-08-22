@@ -6,6 +6,9 @@ resource "aws_lambda_function" "lambda" {
   runtime       = var.runtime
   timeout       = var.timeout
   memory_size   = var.memory
+  ephemeral_storage {
+    size = var.ephemeral_storage
+  }
   architectures = var.architectures
   source_code_hash = filebase64sha512(var.filename)
 
