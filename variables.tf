@@ -47,6 +47,11 @@ variable "filename" {
   type        = string
   default     = null
   description = "Caminho para o arquivo de deployment da função. Use `source_code_path` para implantações baseadas em S3."
+
+  validation {
+    condition     = (var.filename != null) != (var.source_code_path != null)
+    error_message = "Exatamente uma das variáveis 'filename' ou 'source_code_path' deve ser fornecida."
+  }
 }
 
 variable "source_code_path" {
