@@ -1,5 +1,6 @@
 locals {
-  is_s3_deployment = var.source_code_path != null
+  is_s3_deployment   = var.source_code_path != null
+  effective_filename = coalesce(var.filename, "lambda.zip")
 
   lambda_function = local.is_s3_deployment ? aws_lambda_function.from_s3[0] : aws_lambda_function.from_file[0]
 }
@@ -17,8 +18,8 @@ resource "aws_lambda_function" "from_file" {
   architectures    = var.architectures
   tags             = var.tags
   publish          = true
-  filename         = var.filename
-  source_code_hash = var.filename != null ? filemd5(var.filename) : null
+  filename         = local.effective_filename
+  source_code_hash = filemd5(local.effective_filename)
 
   environment {
     variables = var.environment
