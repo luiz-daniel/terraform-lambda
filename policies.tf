@@ -30,10 +30,10 @@ resource "aws_iam_role" "lambda-role" {
 }
 
 resource "aws_iam_role_policy_attachment" "managed" {
-  for_each = toset([
+  for_each = toset(concat([
     "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
     "arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess",
-  ])
+  ], var.vpc_config != null ? ["arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"] : []))
 
   role       = aws_iam_role.lambda-role.name
   policy_arn = each.value

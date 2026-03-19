@@ -108,3 +108,12 @@ variable "alias_name" {
   default     = "latest"
   description = "Nome do alias da função Lambda."
 }
+
+variable "vpc_config" {
+  type = object({
+    subnet_ids         = list(string)
+    security_group_ids = list(string)
+  })
+  default     = null
+  description = "Configuração de VPC para a função Lambda. Se fornecido, a função será criada dentro da VPC."
+}
