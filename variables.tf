@@ -109,6 +109,12 @@ variable "alias_name" {
   description = "Nome do alias da função Lambda."
 }
 
+variable "region" {
+  type        = string
+  default     = "us-east-1"
+  description = "Região da AWS onde a função Lambda será criada."
+}
+
 variable "vpc_config" {
   type = object({
     subnet_ids         = list(string)

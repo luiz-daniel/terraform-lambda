@@ -1,7 +1,3 @@
-provider "aws" {
-  region = "us-east-1"
-}
-
 # Bucket para armazenar os artefatos da aplicação Lambda
 resource "aws_s3_bucket" "artifacts" {
   bucket = "lambda-artifacts-${random_id.id.hex}"
@@ -16,6 +12,7 @@ module "lambda" {
 
   function_name = "minha-funcao-lambda-go"
   description   = "Minha função Lambda de exemplo em Go."
+  region        = "us-east-1"
 
   # Aponta para o diretório que contém o código-fonte e o executável `bootstrap`
   source_code_path = "${path.module}/app"
